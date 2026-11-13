@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#12355B">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="format-detection" content="telephone=no">
+<title>MMP Bất Ổn – Trắc nghiệm luyện tập</title>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FFFFFF;--stage:#12355B;--card:#FFFDF5;--ink:#14110F;--mute:#5E5648;--red:#E63946;--ok:#1B9A6C;--blue:#2F6FED;--yel:#FFD23F;--sh:#14110F;color-scheme:light;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background-color:var(--bg);color:var(--ink);font:400 16px/1.5 "Be Vietnam Pro",system-ui,sans-serif;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:-24px;z-index:-1;pointer-events:none;background-image:radial-gradient(rgba(20,17,15,.07) 2px,transparent 2.5px);background-size:24px 24px;animation:dots 9s linear infinite;will-change:transform}
+@keyframes dots{to{transform:translate(24px,24px)}}
+main{max-width:660px;margin:0 auto;padding:24px 14px 56px}
+.box{background:var(--card);border:3px solid var(--ink);border-radius:12px;box-shadow:5px 5px 0 var(--sh)}
+.logo{position:relative;display:block;text-align:center;margin:8px 0 10px;line-height:1;animation:logoIn .9s cubic-bezier(.3,1.6,.5,1) both;background:radial-gradient(ellipse at 50% 55%,rgba(255,210,63,.85),rgba(255,210,63,0) 66%);font-size:16px;font-weight:800}
+@keyframes logoIn{from{transform:translateY(-40px) scale(.6);opacity:0}to{transform:none;opacity:1}}
+.logo .l1{display:inline-block;font-size:clamp(26px,8vw,44px);letter-spacing:.08em;color:#fff;background:var(--stage);border:3px solid var(--ink);border-radius:10px;padding:4px 18px;box-shadow:5px 5px 0 var(--sh);transform:rotate(-2deg)}
+.logo .l2{display:block;margin-top:6px;font-size:clamp(56px,18vw,96px);letter-spacing:.02em;color:var(--red);-webkit-text-stroke:3px var(--ink);paint-order:stroke fill;text-shadow:5px 5px 0 var(--ink)}
+.logo .l2 span{display:inline-block;animation:wave 1.7s ease-in-out infinite;animation-delay:calc(var(--i)*.12s)}
+.logo .l2 i{display:inline-block;width:.25em}
+@keyframes wave{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-9px) rotate(-5deg)}}
+.logo .gav{position:absolute;left:2%;top:-6px;font-size:clamp(30px,9vw,46px);animation:idle 3s ease-in-out infinite}
+@keyframes idle{50%{transform:translateY(-5px)}}
+.sub{margin:0 0 14px;font-weight:600;text-align:center}
+.snd{position:fixed;top:calc(10px + env(safe-area-inset-top,0px));right:10px;z-index:30;width:44px;height:44px;font-size:21px;line-height:1;border:3px solid var(--ink);border-radius:50%;background:var(--card);box-shadow:3px 3px 0 var(--sh);cursor:pointer}
+.snd:focus-visible,.go:focus-visible,.opt:focus-visible,.mode:focus-visible,.ghost:focus-visible,.chipb:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.back{position:fixed;top:calc(10px + env(safe-area-inset-top,0px));left:10px;z-index:30;height:44px;padding:0 14px;font:800 14px "Be Vietnam Pro",sans-serif;color:var(--ink);border:3px solid var(--ink);border-radius:22px;background:var(--yel);box-shadow:3px 3px 0 var(--sh);cursor:pointer;animation:pop .5s cubic-bezier(.3,1.4,.5,1) both}
+.back:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--sh)}
+.back:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.pop{animation:pop .6s cubic-bezier(.3,1.4,.5,1) both}
+@keyframes pop{0%{transform:scale(.6) translateY(16px) rotate(-3deg);opacity:0}60%{transform:scale(1.06) rotate(1deg);opacity:1}100%{transform:none;opacity:1}}
+.intro{padding:16px 14px 20px;background:linear-gradient(#FFFFFF,#FFF4C7)}
+.sec{font-weight:800;margin:14px 0 8px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:6px 0 4px}
+.st{background:var(--card);border:3px solid var(--ink);border-radius:10px;box-shadow:3px 3px 0 var(--sh);padding:8px 4px;text-align:center;font-size:12px;line-height:1.3}
+.st b{display:block;font-size:24px}
+.modes{display:grid;gap:10px}
+.mode{display:flex;gap:12px;align-items:center;text-align:left;font:600 14px/1.35 "Be Vietnam Pro",sans-serif;color:var(--ink);background:var(--card);border:3px solid var(--ink);border-left-width:10px;border-radius:10px;padding:10px 12px;cursor:pointer;box-shadow:4px 4px 0 var(--sh);transition:transform .1s,box-shadow .1s;animation:pop .55s cubic-bezier(.3,1.4,.5,1) backwards}
+.mode:hover{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--sh)}
+.mode .ic{font-size:34px;line-height:1;animation:idle 3s ease-in-out infinite}
+.mode b{display:block;font-size:16px;font-weight:800}
+.mode small{color:var(--mute);font-size:12.5px}
+.mode:nth-child(1){border-left-color:var(--blue)}.mode:nth-child(2){border-left-color:var(--red)}.mode:nth-child(3){border-left-color:var(--ok)}.mode:nth-child(4){border-left-color:var(--yel)}.mode:nth-child(5){border-left-color:#9B5DE5}
+.mode[disabled]{opacity:.45;cursor:not-allowed}
+.rowc{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:6px 0}
+.chipb{font:800 13px "Be Vietnam Pro",sans-serif;color:var(--ink);background:var(--card);border:3px solid var(--ink);border-radius:20px;padding:4px 12px;cursor:pointer;box-shadow:2px 2px 0 var(--sh)}
+.chipb.on{background:var(--yel)}
+.hud{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px 12px;margin-bottom:14px}
+.m b{display:block;font-size:13px;font-weight:800;margin-bottom:3px}
+.m{position:relative}
+.bar{position:relative;height:18px;border:2px solid var(--ink);border-radius:8px;background:var(--card);overflow:hidden}
+.bar i{display:block;height:100%;width:0;transition:width .8s cubic-bezier(.3,1.5,.5,1);background-image:linear-gradient(100deg,transparent 30%,rgba(255,255,255,.5) 50%,transparent 70%);background-size:220% 100%;animation:shine 2.4s linear infinite}
+@keyframes shine{to{background-position:-220% 0}}
+.bar:after{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(90deg,transparent 0 calc(10% - 2px),rgba(20,17,15,.35) calc(10% - 2px) 10%)}
+#pg i{background-color:var(--blue)}#ac i{background-color:var(--ok)}
+.chip{grid-column:1/-1;font-size:13px;font-weight:600;color:var(--mute)}
+.timer{height:16px;border:3px solid var(--ink);border-radius:8px;background:var(--card);overflow:hidden;margin:0 0 14px;box-shadow:3px 3px 0 var(--sh)}
+.timer i{display:block;height:100%;width:100%;background:var(--yel);transition:width 1s linear}
+.timer.low i{background:var(--red);animation:blink .5s infinite}
+@keyframes blink{50%{opacity:.45}}
+.qcard{padding:16px 15px;margin-bottom:14px;background:linear-gradient(#FFFFFF,#FFF4C7);animation:pop .5s cubic-bezier(.3,1.4,.5,1) both}
+.qn{display:inline-block;font-weight:800;font-size:12px;letter-spacing:.04em;background:var(--ink);color:var(--yel);border-radius:6px;padding:2px 9px;margin-bottom:8px}
+.qt{font-weight:800;font-size:18px;line-height:1.4;margin:0;white-space:pre-line}
+.opts{display:flex;flex-direction:column;gap:9px}
+.opt{display:flex;gap:10px;font:600 15px/1.4 "Be Vietnam Pro",sans-serif;text-align:left;color:var(--ink);background:var(--card);border:3px solid var(--ink);border-left-width:10px;border-radius:10px;padding:11px 13px;cursor:pointer;box-shadow:4px 4px 0 var(--sh);transition:transform .1s,box-shadow .1s;animation:pop .55s cubic-bezier(.3,1.4,.5,1) backwards}
+.opt .k{flex:none;width:26px;height:26px;display:grid;place-items:center;border:2px solid var(--ink);border-radius:50%;font-weight:800;font-size:13px;background:var(--yel)}
+.opts .opt:nth-child(1){border-left-color:#2F6FED}.opts .opt:nth-child(2){border-left-color:#E63946}.opts .opt:nth-child(3){border-left-color:#1B9A6C}.opts .opt:nth-child(4){border-left-color:#9B5DE5}
+.opt:hover:not([disabled]){transform:translate(2px,2px);box-shadow:2px 2px 0 var(--sh)}
+.opt[disabled]{cursor:default}
+.opt.sel{background:#FFE9A0}
+.opt.right{background:#D4F5E6;border-color:var(--ok);opacity:1}
+.opt.wrong{background:#FFD6D9;border-color:var(--red)}
+.opt.dim{opacity:.55}
+.go{font:800 17px "Be Vietnam Pro",sans-serif;color:#fff;background:var(--red);border:3px solid var(--ink);border-radius:10px;padding:11px 20px;cursor:pointer;box-shadow:4px 4px 0 var(--sh);margin-top:12px;animation:pop .55s cubic-bezier(.3,1.4,.5,1) backwards}
+.go:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--sh)}
+.go.glow{animation:pop .55s cubic-bezier(.3,1.4,.5,1) backwards,glow 1.8s 1s ease-in-out infinite}
+@keyframes glow{50%{box-shadow:4px 4px 0 var(--sh),0 0 0 7px rgba(230,57,70,.28)}}
+.ghost{font:800 15px "Be Vietnam Pro",sans-serif;color:var(--ink);background:var(--yel);border:3px solid var(--ink);border-radius:10px;padding:9px 16px;cursor:pointer;box-shadow:4px 4px 0 var(--sh);margin-top:12px}
+.ghost:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--sh)}
+.ghost[disabled]{opacity:.5;cursor:default}
+.acts{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.ans{margin-top:12px;padding:10px 13px;border:3px solid var(--ink);border-left-width:10px;border-left-color:var(--yel);border-radius:10px;background:#FFF4C7;box-shadow:3px 3px 0 var(--sh);font-weight:600;font-size:15px;animation:pop .5s cubic-bezier(.3,1.4,.5,1) both}
+.ans .tag{display:block;width:fit-content;font-weight:800;font-size:12px;letter-spacing:.04em;background:var(--ink);color:var(--yel);border-radius:6px;padding:2px 9px;margin-bottom:6px}
+.ans.good{background:#E3F7EE;border-left-color:var(--ok)}.ans.bad{background:#FFE4E6;border-left-color:var(--red)}
+.ans small{display:block;margin-top:6px;font-weight:400;color:var(--mute);font-size:13px}
+.slam{position:fixed;left:50%;top:38%;z-index:20;pointer-events:none;font-weight:800;font-size:clamp(34px,11vw,64px);padding:4px 18px;border:6px solid;border-radius:10px;background:var(--card);transform:translate(-50%,-50%) rotate(-6deg);animation:slam 1.1s ease-out forwards;white-space:nowrap;box-shadow:8px 8px 0 var(--sh)}
+.slam.bad{color:var(--red);border-color:var(--red)}.slam.good{color:var(--ok);border-color:var(--ok)}
+@keyframes slam{0%{transform:translate(-50%,-50%) rotate(-16deg) scale(3.6);opacity:0}16%{transform:translate(-50%,-50%) rotate(-4deg) scale(.88);opacity:1}26%{transform:translate(-50%,-50%) rotate(-7deg) scale(1.1)}36%{transform:translate(-50%,-50%) rotate(-6deg) scale(1)}80%{opacity:1}100%{transform:translate(-50%,-50%) rotate(-6deg) scale(1.06);opacity:0}}
+.flash{position:fixed;inset:0;z-index:19;pointer-events:none;animation:fl .6s ease-out forwards}
+.flash.bad{background:radial-gradient(circle,transparent 30%,rgba(230,57,70,.5))}.flash.good{background:radial-gradient(circle,transparent 30%,rgba(27,154,108,.4))}
+@keyframes fl{from{opacity:1}to{opacity:0}}
+.shake{animation:sk .45s}
+@keyframes sk{20%{transform:translateX(-9px)}40%{transform:translateX(9px)}60%{transform:translateX(-6px)}80%{transform:translateX(6px)}}
+.rain{position:fixed;top:-40px;z-index:15;pointer-events:none;font-size:26px;animation:fall 2s linear forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(300deg)}}
+.dl{position:absolute;right:0;top:-6px;font-weight:800;font-size:18px;pointer-events:none;animation:dl 1.2s ease-out forwards}
+.dl.up{color:var(--ok)}.dl.dn{color:var(--red)}
+@keyframes dl{from{transform:translateY(8px) scale(.6);opacity:0}20%{opacity:1;transform:translateY(-4px) scale(1.4)}to{transform:translateY(-28px);opacity:0}}
+.end{padding:18px;text-align:center;background:linear-gradient(#FFFFFF,#FFF4C7)}
+.end .big{display:inline-block;font-size:72px;line-height:1.1;animation:bigIn 1.1s cubic-bezier(.3,1.6,.5,1) both,idle 2.6s 1.1s ease-in-out infinite}
+@keyframes bigIn{from{transform:scale(0) rotate(-200deg)}to{transform:none}}
+.end h2{font-size:26px;font-weight:800;margin:6px 0}
+.score{font-weight:800;background:var(--yel);border:3px solid var(--ink);display:inline-block;padding:6px 14px;border-radius:8px;transform:rotate(-2deg);font-size:20px}
+.recap{list-style:none;margin:12px 0;padding:0;text-align:left;font-size:14px;display:grid;gap:8px;max-height:340px;overflow:auto}
+.recap li{border:3px solid var(--ink);border-radius:10px;padding:8px 11px;background:var(--card);border-left-width:10px}
+.recap li.r{border-left-color:var(--ok)}.recap li.w{border-left-color:var(--red)}
+.recap b{display:block}.recap span{display:block;color:var(--mute);font-size:13px}
+.endbtn{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.open{position:fixed;inset:0;z-index:60;background:#0B1F3A;overflow:hidden;display:grid;place-items:center;cursor:pointer}
+.cur{position:absolute;top:0;bottom:0;width:51%;z-index:3;background:repeating-linear-gradient(90deg,#B3122B 0 22px,#8E0E22 22px 44px);box-shadow:inset 0 -40px 50px rgba(0,0,0,.4)}
+.cl{left:0;border-right:4px solid #14110F;animation:cl 1.1s .35s cubic-bezier(.7,0,.3,1) forwards}
+.cr{right:0;border-left:4px solid #14110F;animation:cr 1.1s .35s cubic-bezier(.7,0,.3,1) forwards}
+@keyframes cl{to{transform:translateX(-103%)}}
+@keyframes cr{to{transform:translateX(103%)}}
+.spot{position:absolute;top:-10%;left:-10%;width:120%;height:130%;background:radial-gradient(ellipse at 50% 45%,rgba(255,236,160,.55),rgba(255,236,160,0) 55%);opacity:0;animation:spt .8s .5s ease-out forwards}
+@keyframes spt{to{opacity:1}}
+.ostage{position:relative;z-index:2;text-align:center;color:#fff;animation:osk .4s 1.75s,osk2 .4s 2.25s}
+@keyframes osk{20%{transform:translate(-9px,4px)}40%{transform:translate(8px,-5px)}60%{transform:translate(-5px,3px)}80%{transform:translate(4px,-2px)}}
+@keyframes osk2{20%{transform:translate(8px,-4px)}40%{transform:translate(-9px,5px)}60%{transform:translate(5px,-3px)}80%{transform:translate(-4px,2px)}}
+.scales{display:inline-block;font-size:clamp(60px,18vw,100px);line-height:1;transform-origin:50% 0;opacity:0;margin-bottom:8px;animation:odrop .7s 1s cubic-bezier(.3,1.5,.5,1) forwards,oswing 2.4s 1.7s ease-in-out infinite}
+@keyframes odrop{from{transform:translateY(-180px);opacity:0}to{transform:none;opacity:1}}
+@keyframes oswing{0%,100%{transform:rotate(0)}25%{transform:rotate(9deg)}75%{transform:rotate(-9deg)}}
+.ot1{font-weight:800;font-size:clamp(32px,10vw,60px);letter-spacing:.1em;line-height:1.1;opacity:0;animation:tslam .45s 1.6s cubic-bezier(.2,1.6,.4,1) forwards}
+.ot2{font-weight:800;font-size:clamp(64px,22vw,120px);line-height:1.05;color:#FF4D5E;-webkit-text-stroke:3px #14110F;paint-order:stroke fill;text-shadow:6px 6px 0 #FFD23F;opacity:0;animation:tslam .45s 2.1s cubic-bezier(.2,1.6,.4,1) forwards}
+@keyframes tslam{0%{transform:scale(3.2) rotate(-8deg);opacity:0}60%{transform:scale(.92) rotate(2deg);opacity:1}100%{transform:none;opacity:1}}
+.otag{margin-top:14px;color:#FFD23F;font-weight:600;font-size:16px;animation:pop .6s 2.9s both}
+.fl{position:absolute;inset:0;background:#fff;opacity:0;z-index:4;pointer-events:none}
+.f1{animation:ofl .4s 1.7s ease-out}.f2{animation:ofl .4s 2.2s ease-out}
+@keyframes ofl{0%{opacity:.85}100%{opacity:0}}
+.skip{position:absolute;bottom:calc(18px + env(safe-area-inset-bottom,0px));left:0;right:0;text-align:center;color:#9FB6D4;font-size:13px;z-index:5;animation:pop .6s 1s both}
+@keyframes ofade{to{opacity:0}}
+.gate{position:absolute;left:0;right:0;bottom:calc(70px + env(safe-area-inset-bottom,0px));text-align:center;z-index:6;color:#FFD23F;font-weight:800;font-size:clamp(18px,5vw,24px);letter-spacing:.04em;text-shadow:2px 2px 0 #14110F;animation:gt 1.2s ease-in-out infinite}
+@keyframes gt{50%{transform:scale(1.08);opacity:.6}}
+.open:not(.play) *{animation-play-state:paused}
+.open:not(.play) .gate{animation-play-state:running}
+.open.play .gate{display:none}
+.open:not(.play) .skip{display:none}
+@keyframes ofade{to{opacity:0}}
+body:not(.started) main{display:none}
+
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{-webkit-tap-highlight-color:transparent;touch-action:manipulation;overscroll-behavior-y:none}
+button{-webkit-appearance:none;appearance:none;user-select:none;-webkit-user-select:none;touch-action:manipulation}
+.opt,.mode,.chipb,.ghost,.go{min-height:48px}
+.opt:hover:not([disabled]),.mode:hover{transform:none;box-shadow:4px 4px 0 var(--sh)}
+@media (hover:hover){.opt:hover:not([disabled]),.mode:hover{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--sh)}}
+.opt:active:not([disabled]),.mode:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--sh)}
+.acts{position:sticky;bottom:0;z-index:10;padding:10px 0 calc(10px + env(safe-area-inset-bottom,0px));margin-top:6px;background:linear-gradient(rgba(255,255,255,0),#fff 35%)}
+.acts .go,.acts .ghost{margin-top:0}
+.rowc{gap:10px}
+@media (max-width:520px){
+main{padding:64px 12px 40px}
+.logo .gav{left:0}
+.qt{font-size:17px}
+.opt{font-size:15px;padding:12px}
+.acts .go{flex:1 1 100%;text-align:center}
+.acts .ghost{flex:1 1 100%}
+.endbtn .go,.endbtn .ghost{flex:1 1 100%}
+.recap{max-height:none}
+.slam{font-size:clamp(30px,10vw,48px)}
+.mode small{font-size:12px}
+}
+@media (max-width:360px){.stats{grid-template-columns:1fr 1fr 1fr}.st b{font-size:20px}.hud{grid-template-columns:1fr}}
+@media (max-height:480px) and (orientation:landscape){main{padding-top:56px}.acts{position:static}}
+
+.opt,.mode{will-change:transform}
+.opt{transition:transform .12s,box-shadow .12s,background-color .25s,opacity .25s,border-color .25s}
+.opt span:last-child{overflow-wrap:anywhere;min-width:0}
+.qt{overflow-wrap:anywhere}
+.go{position:relative}
+.go.glow{animation:pop .55s cubic-bezier(.3,1.4,.5,1) backwards}
+.go.glow:after{content:"";position:absolute;inset:-5px;border:3px solid rgba(230,57,70,.55);border-radius:14px;pointer-events:none;animation:ring 1.6s .8s ease-out infinite}
+@keyframes ring{from{transform:scale(.97);opacity:1}to{transform:scale(1.1);opacity:0}}
+.bar i{will-change:width}
+.resume{display:flex;gap:12px;align-items:center;padding:12px;margin-bottom:12px;background:#E3F7EE;animation:pop .6s cubic-bezier(.3,1.4,.5,1) both}
+.resume .ic{font-size:32px;line-height:1}
+.resume div{flex:1;min-width:0;font-size:14px;line-height:1.35}
+.resume b{display:block;font-size:15px}
+.resume .rb{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.resume .go,.resume .ghost{margin:0;padding:8px 14px;font-size:14px;min-height:44px}
+.ring{position:relative;width:150px;height:150px;margin:8px auto 4px}
+.ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.ring circle{fill:none;stroke-width:12}
+.ring .bg{stroke:#E9E2CF}
+.ring .fg{stroke:var(--ok);stroke-linecap:round;transition:stroke-dashoffset 1.3s cubic-bezier(.3,1,.4,1),stroke .3s}
+.ring b{position:absolute;inset:0;display:grid;place-items:center;font-size:32px;font-weight:800}
+.hud{position:relative}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<div id="open" class="open" aria-hidden="true">
+<div class="cur cl"></div><div class="cur cr"></div><div class="spot"></div>
+<div class="ostage"><div class="scales">📝</div><div class="ot1">MMP</div><div class="ot2">BẤT ỔN</div><div class="otag">Trắc nghiệm luyện tập: làm sai thì làm lại</div></div>
+<div class="fl f1"></div><div class="fl f2"></div>
+<div class="gate">🔊 Chạm để mở màn</div>
+<div class="skip">Chạm để bỏ qua</div>
+</div>
+<button id="back" class="back" type="button" hidden aria-label="Về menu">🏠 Menu</button>
+<button id="snd" class="snd" type="button" aria-label="Bật hoặc tắt âm thanh" aria-pressed="true">🔊</button>
+<main id="root">
+<h1 class="logo"><span class="gav" aria-hidden="true">📝</span><span class="l1">MMP</span><span class="l2" aria-label="Bất Ổn"><span style="--i:0">B</span><span style="--i:1">Ấ</span><span style="--i:2">T</span><i></i><span style="--i:3">Ổ</span><span style="--i:4">N</span></span></h1>
+<p class="sub">Trắc nghiệm luyện tập · chọn chế độ rồi chiến thôi</p>
+
+<section class="box intro" id="menu">
+<div class="stats">
+<div class="st pop" style="animation-delay:.1s"><b id="sTot">0</b>câu hỏi</div>
+<div class="st pop" style="animation-delay:.2s"><b id="sBest">–</b>điểm cao nhất</div>
+<div class="st pop" style="animation-delay:.3s"><b id="sWrong">0</b>câu cần ôn</div>
+</div>
+<div id="resume" class="box resume" hidden></div>
+<p class="sec">🎛️ Số câu mỗi lượt</p>
+<div class="rowc" id="cnts"></div>
+<p class="sec">📚 Chọn chế độ</p>
+<div class="modes">
+<button class="mode" data-m="seq" type="button" style="animation-delay:.3s"><span class="ic">📖</span><span><b>Luyện tập tuần tự</b><small>Theo thứ tự trong đề. Chọn xong biết đúng sai ngay.</small></span></button>
+<button class="mode" data-m="rnd" type="button" style="animation-delay:.4s"><span class="ic">🎲</span><span><b>Luyện tập ngẫu nhiên</b><small>Xáo trộn thứ tự câu hỏi, chống học vẹt.</small></span></button>
+<button class="mode" data-m="exam" type="button" style="animation-delay:.5s"><span class="ic">⏱️</span><span><b>Thi thử có giờ</b><small>Có đồng hồ đếm ngược, chấm điểm và xem lại ở cuối.</small></span></button>
+<button class="mode" data-m="review" type="button" id="bReview" style="animation-delay:.6s"><span class="ic">🔁</span><span><b>Ôn câu làm sai</b><small>Chỉ gồm các câu bạn từng trả lời sai.</small></span></button>
+<button class="mode" data-m="flash" type="button" style="animation-delay:.7s"><span class="ic">🃏</span><span><b>Lật thẻ học thuộc</b><small>Đọc câu hỏi, tự nhớ, bấm xem đáp án, tự đánh giá.</small></span></button>
+</div>
+</section>
+
+<div id="play" hidden>
+<div class="box hud">
+<div class="m" id="mp"><b id="pl">📍 Tiến độ</b><div class="bar" id="pg"><i></i></div></div>
+<div class="m" id="ma"><b id="al">🎯 Chính xác</b><div class="bar" id="ac"><i></i></div></div>
+<div class="chip" id="chip"></div>
+<div class="timer" id="timer" hidden style="grid-column:1/-1;margin:0"><i></i></div>
+</div>
+<div class="box qcard" id="qcard"></div>
+<div class="opts" id="opts"></div>
+<div id="ansbox" aria-live="polite"></div>
+<div class="acts" id="acts"></div>
+</div>
+<div id="endbox" hidden></div>
+</main>
+<script>
+var Q=[{"q": "Which models sees media messages as \"magic bullets\" piercing the mind of the populace?", "o": ["Semantic model", "Conditional effects model", "Cumulative effects model", "Direct effects model"], "a": 3}, {"q": "What are Physiological when people are exposed to media?", "o": ["Increases in breathing and heart rate result form watching a scary movie or an exciting ball game", "Increases emotional result from watching a scary movie or an exciting ball game", "Cry while watching a scary movie or an exciting ball game", "Happy ending a scary movie or an exciting ball game"], "a": 0}, {"q": "_____ is sending, receiving, or fowarding sexual words, images online or videos between mobile phone of oneself to others.", "o": ["Socialization of adolescent behavior", "Catharsis", "Sexting", "Positive socialization effects"], "a": 2}, {"q": "Which of them is not considered as an effect of advertising?", "o": ["Behavioral effect", "Attitudinal effect", "Cognitive effects", "Psychological effect"], "a": 3}, {"q": "_____would predict that a girl who is angry at her sister and then watches as violent cartoon would be less likely to actually hurt her sister than if she hadn't watched the cartoon.", "o": ["Catharsis", "Sensitization", "Desensitization", "Cultivation"], "a": 0}, {"q": "What are the two things that advertising tell women not to do?", "o": ["Skinny", "Young", "Old and Fat", "Fat"], "a": 2}, {"q": "Which field usually makes use of music as a cue to memory?", "o": ["Education", "Psychology", "Sports", "Advertising"], "a": 3}, {"q": "Which of the following statements regards men who see films with scenes of sexual violence later showed a more callous attitude toward rape and women in general?", "o": ["Erotica as stimulator of aggression", "How the woman is portrayed", "Individual differences in male viewers", "Attitudes toward different sex acts"], "a": 1}, {"q": "How often do high school students get their news from social network-ing sites?", "o": ["According to the surveys implemented by Loth in 2012, 76% of high school students get their news regularly or sometimes \"through Facebook, Twitter, or other social net-working sites.", "According to 2011 surveys, 38% of those under 30 get their news \"regularu or sometimes\" through Facebook, Twitter, or other social net-working sites.", "There are 26% of high school students get their news \"regularu or sometimes\" through Facebook, Twitter, or other social net-working sites.", "For high school students, the figure was 46% (Loth, 2012)"], "a": 0}, {"q": "What DOES NOT characterize the \"mass nature\" of mass communication?", "o": ["The audience is large and anonymous", "The message is straightforward", "Communication sources are institutional and organizational", "The basic economic funtion to attract and hold as large an audience as possible for the advertisers"], "a": 1}, {"q": "Fill in a blank: \"A newsworthy story is ____ it is about individuals. This allows audiences to identify with the person and can help make a dauntingly complex events easier to comprehend. A personalised story also lends itself to photography and the interview format, which works well with TV, print or Internet\"", "o": ["Individual", "Personalized", "News", "Truth"], "a": 1}, {"q": "All of the following are effects of viewin media sex EXPECT", "o": ["Sexual arousal", "Values and attitudes", "Sexual behavior", "Reinforcement of sex"], "a": 3}, {"q": "One way to increse news coverage beyond what is routinely expected is to create _____ to produce many hours of free advertising", "o": ["A game-framed story", "pseudo-events", "Breaking news", "Latest news"], "a": 1}, {"q": "A process that diminishes emotional responsiveness to a negative, aversive or positive stimulus after repeated exposure to it.", "o": ["Disinhibition", "Sensitization", "Desensitization", "Cultivation"], "a": 2}, {"q": "What is the way to study the number of people exposed to the media?", "o": ["Looking at Exposure", "Looking at Content", "Looking at Cognition", "Looking at Effects"], "a": 0}, {"q": "What is the most uncomfortable combination of audience and movie type for college students?", "o": ["Horror film with friend", "Science fiction with your parents", "Watching an explicit R-rated sexual movie with your parents is thought to be much uncomfortable a situation than watching a sexual movie with anyone else or watchinh a graphically violent movie with anyone, or anyone of several combinations of audience and movie (Harris & Cook, 2011)", "All of the above"], "a": 2}, {"q": "How many satges of processing involved in understanding and acting upon seeing an ad? (Shimp & Gresham, 1983)", "o": ["7", "8", "9", "10"], "a": 1}, {"q": "Fill in a blank \"news media, especially _____, can even affect foreign policy and foreign relations\" (Gilboa, 2002, Larson, 1986, Naveh, 2002)", "o": ["television", "newpaper", "radio", "social media"], "a": 0}, {"q": "Which of the following is another alleged effect of media sex that emotional release so important to psychodynamic models of personality?", "o": ["Sexual arousal", "Premarital sex", "Catharsis", "Adolescent behavior"], "a": 2}, {"q": "What is NOT a characteristic of \"communication\" in mass communication?", "o": ["The media user is extremely passive, mindlessly absorbing the program content", "The meaning of a media message is constructed rather than being given", "The social situation affects the media consumption experiences", "The viewer's interpretation depends on what is in the mind and experience of him or her"], "a": 2}, {"q": "Which of them belongs to ads for brands of products category?", "o": ["Coca-cola", "Milk", "Coffee", "Banks"], "a": 0}, {"q": "How many TV commercials do children see every year? (Fonda, 2004; Kaiser Family Foundation, 2007a)", "o": ["10,000 - 20,000", "30,000 - 40,000", "50,000 - 60,000", "70,000 - 80,000"], "a": 1}, {"q": "Which characteristic does represent for sound bites of a newsworthy events?", "o": ["A story must be packageble in small pieces, fit for a very brief TV news story or a short piece online or in print.", "A story must be inoffensive or at least not blatantly offensive", "A story must be perceived as credible", "A story must be connected to the community of reader, viewers, or listeners."], "a": 0}, {"q": "What is this following phenomenon? \"We do not notice changes in a continous visual scene as we watch it\"", "o": ["Media brainwashing", "Colour blindness", "Mean world syndrome", "Inattentional blindness"], "a": 3}, {"q": "_____ are especially powerful in understanding the real-world effects of media violence.", "o": ["Bobo doll studies", "Longitudinal studies", "Cohort studies", "Cross-sectional studies"], "a": 1}, {"q": "Operational definitions of important constructs is crucial in____", "o": ["Marketing research", "Television ratings", "Content-analysis studies", "None of A,B and C"], "a": 2}, {"q": "Which character in TV series are often employed outside the home, but only occurs half as often on TV as in real life?", "o": ["Father characters", "Brother characters", "Kid characters", "Mother characters"], "a": 3}, {"q": "Which statement comes form the cumulative effects model?", "o": ["Different people perceive the same message differently and respond to it in different ways", "Media were thought to \"inject us with venom\"", "Media effects are due not so much to a single exposure as to repeated exposure to media stimuli", "Media can still have substantial effects, but only under certain conditions or for certain audience members"], "a": 2}, {"q": "There are 4 stages of minority portrayals. Which are they?", "o": ["Recognition, Redicule, Regulation, Respect", "Recognition, Redicule, Non-regulation, Respect", "Recognition, Redicule, Regulation, Disrespect", "Non-recognition, Redicule, Regulation, Respect"], "a": 3}, {"q": "What is one of the most distinctive roles of humor in media experience?", "o": ["Improving the ability to readily take the perspective of another person", "Charging the attitudes of the audience", "A healthy and socially acceptable outlet for dealing with someone of our darker feelings", "Improving the enjoyment of media experience"], "a": 2}, {"q": "Fill in a blank: \"A different kind of persuasive media message is the _____, usually sponsored by some government agency or nonprofit organization, or coordinated by the non-profit Ad Council\"", "o": ["Public Service Announcement (PSA)", "Community Service Announcement", "Civil Service Announcement", "Human Service Announcement"], "a": 0}, {"q": "Different categories of stimuli and events differentially produce fear responses in viewers of different ages. Which of the following is mentioned?", "o": ["Fear-inducing images", "Responses to fear", "Fearful media memories", "Brain correlates"], "a": 0}, {"q": "What are the contents that show The Reflection Myth of Media? (Chọn tổ hợp đúng)", "o": ["A, C, D", "A, B, C", "A, B, D"], "a": 1, "note": "Các nhận định: A. TV dramas and magezine fiction reflect the concerns and issues that viewers ar struggling with. | B. The presence of violence, pornography, internet predators, and offensive stereotypes merely reflects the ugly reality of an imperfect world. | C. Advertising reflects the needs and wants that we really have | D. North Koreans are not allowed to leave their country or have any exposure to foreign media"}, {"q": "How have family images been portrayed in the media in recents years?", "o": ["Dad as homemaker, mom as superwoman", "Mom as buffoon, Dad as superman", "Mom as superwoman, Dad as buffoon", "Mom as homemaker, Dad as buffoon"], "a": 2}, {"q": "What are the idealized portrayal of feminine beauty in advertising?", "o": ["very thin, small-waisted, large-chested", "very tall, very thin, and small-hipped", "very tall, very young, and large-chested", "very young, very thin, and small-hipped"], "a": 1}, {"q": "All of the following are purposes of political advertising EXPECT", "o": ["Agenda setting", "Fund-raising", "Brand-Building", "Name Recognition"], "a": 2}, {"q": "According to the poll implemented by Kaiser Family Foundation in 2007b, how many percentage of parents who said they were \"somewhat concerned\" that their children were watching too much on violent contents on TV?", "o": ["50%", "60%", "70%", "80%"], "a": 3}, {"q": "At what times do news shows and commercials receive relatively less attention?", "o": ["Early morning", "Noon", "Evening", "At night"], "a": 0}, {"q": "Which of the following regards how the media elicit the content, namely, news coverage of sexually violent crimes in reporting news?", "o": ["Context of sexuality", "Socialization of adolescent behavior", "Thinking toward an erotic film", "Sexual details in the news"], "a": 3}, {"q": "What is an Affect?", "o": ["A feeling tone that long-lasting and may note have a known specific cause", "A feeling tone that are typically short-lasting, many be intense, focused, and often have a clean causal underpinning", "A state of bodily arousal", "A feeling tone that is evaluative, and can be either positive or negative, and comprises both mood and emotions"], "a": 3}, {"q": "How will opportunities for connecting one's computer, television, mobile phones, and music system together change the face of mass communication?", "o": ["Futher blurring the boundary with personal media and entertainment", "Newspaper ads seem more favorably by public than TV Ads", "Some television markets have grown exponentialy in recent years", "DVDs have been an additional boon to home movie viewing"], "a": 0}, {"q": "How many levels of product placement are there according to the landscape models? (Yang & Rockos-Ewoldson,2007)", "o": ["2", "3", "4", "1"], "a": 1}, {"q": "What is NOT a characteristic of (media) transportation?", "o": ["It allows people to enjoy the media experience more", "We allow ourselves to be drawn into a story narrative", "It only involves emotional (e,g., empathy, suspense) activation", "Part of what happens when we willingly suspend disbelief"], "a": 2}, {"q": "How many components do empathy have? What is it/are they?", "o": ["There is 1. Its cognitive", "There is 1. Its emotional components", "There is 2. They are cognitive and emotional components", "There are 3. They are cognitive, incognititive and emotional components"], "a": 2}, {"q": "How many common components does Emotion have? What is it/are they?", "o": ["There is 1. common component. Its the physiological", "There is 1. common components. Its the cognitive", "There is 2. common components. They are the physiological and the cognitive", "There are 3. common compoents. There are 3 common components: Empathy, Suspensem, Humor"], "a": 2}, {"q": "Which statement comes from the cumulative effects model?", "o": ["Different people the same message differently and respond to it in different ways..", "Media were thought to \"inject us with their venom\"", "Media effects are due not so much to a single exposure as to repeated exposure to media ...", "Media can still have subtaintial effects, bit only under certain conditions or for certain audience.."], "a": 2}, {"q": "What makes mass communication \"mass\"? (Wright, 1986)", "o": ["The audience is large and anonymous, and often very heterogeneous.", "Communication sources are institutional and organizational.", "The basic economic function of most media in most nations is to attract and hold as large an audience as possible for the advertisers.", "All of the options."], "a": 3}, {"q": "Conrad Kottak (1990) identified five stages of societal interaction with television. Accordingly, in stage 3, he stated that", "o": ["The medium is new and strange and attracts people with glued gazes—no matter what the content is. \"The medium rather than the message is the mesmerizer\".", "In the next 10 to 15 years, people beginning to interpret TV's messages and selectively accept or reject them.", "The community is saturated with television and the length of exposure increases.", "Adults have spent their whole lives in a culture permeated by television, and its lifelong impact on members of society is taken for granted."], "a": 2}, {"q": "What is the conditional effects model?", "o": ["most individuals in a mass society perceive messages from media in the same fashion and react to them strongly and very similarly.", "the media can still have substantial effects, but only under certain conditions or for certain audience members, often in less dramatic form than suggested by the most vocal critics. This is a model of selective effects based on individual differences (Oliver & Krakowiak, 2009).", "Media messages are thus \"magic bullets\" piercing the mind of the populace.", "the importance of repeated exposure to media stimuli and suggests that effects are due not so much to a single exposure as to the additive effects of many instances of exposure."], "a": 1}, {"q": "In studies about the effects of e=xposure to mass communication, general classes of measurable effects of media include", "o": ["demographic variables classifying the individual (e.g., gender, ethnicity, age), properties of the message (e.g., who commits the violence and whether it is reinforced), or the context of its reception (e.g., children watching television with their parents or alone)", "direct, conditional, or cumulative effects models", "positive or negative aspects of media", "Behavioral effects, attitudinal effects, cognitive effects, physiological effects"], "a": 3}, {"q": "Which following example can describe for physiological effects of media?", "o": ["A single exposure to a Seventeen supermodel is unlikely to trigger an eating disorder, but repeated exposures to ultrathin, large-breasted women may cumulatively encourage a young woman to push her body in that direc- tion, especially if she likes and identifies with the media models", "Learning new information from media (e.g., facts about chimpanzees from a National Geographic article)", "Increasing in breathing and heart rate result from watching a scary movie or an exciting ball game", "Children randomly assigned to view high-risk behav- iors on TV were more likely to later self-report their own tendency to engage in risk-taking behaviors."], "a": 2}, {"q": "Attitudes consist of two components (Festinger, 1957), including:", "o": ["An intellectual (belief) component (e.g., reasons that you favor one political candidate's position over another's), and emotional component (e.g., liking one candidate more than another)", "Positive feelings and negative feelings", "cognitive dissonance and cultivation", "All options are correct"], "a": 0}, {"q": "As applied to media, a principle of the third-person effect means", "o": ["Different media may stimulate different types of cognitive processing.", "(1) people believe that other people are more vulnerable than themselves to persuasive messages and other media influences; and (2) such perceptions can influence behavior", "When we are watching TV, using the Internet, or reading a magazine, we are continually processing, comprehending, and remembering the information we are exposed to", "Media may induce many sorts of attitudes on a given subject"], "a": 1}, {"q": "Fill in a blank: \"Research studying people watching television has found that the typical adult or child over the age of 5 attends to the TV between ..... of the time it is on, varying depending on the time of day and the type of program being watched\" (Anderson & Burns, 1991; Schmitt, Woolf, & Anderson, 2003)", "o": ["between 15 and 30%", "between 25 and 50%", "between 55 and 70%", "between 90 and 100%"], "a": 2}, {"q": "The phenomenon of change blindness refers to...", "o": ["The fact our attention becomes overloaded", "The fact children initially allocate considerable attention to difficult segments but quickly reduce that attention if the material is beyond their level of comprehension", "the fact we do not notice changes in a continuous visual scene as we watch it.", "The fact children spend more time attending to \"child content\" than to \"adult content\"."], "a": 2}, {"q": "What does a social convention of the \"willing suspension of disbelief\" mean?", "o": ["People, for a brief time, agree to accept the characters portrayed onscreen as real human beings so that we can identify with them and experience their joys and sorrows.", "we identify with the character, that is, mentally compare ourselves to and imagine ourselves like that character.", "the possible distraction effects of using mobile phones while driving or studying.", "We are more likely to imitate the behaviors or adopt the attitudes of characters we identify with."], "a": 0}, {"q": "What is the ability to understand and feel what someone else is feeling called?", "o": ["Suspense", "Empathy", "Transportation", "Identification"], "a": 1}, {"q": "Fill in a blank: \"Part of what happens when we willingly suspend disbelief is that we allow ourselves to be ......into a narrative world, that is, drawn into a story\".", "o": ["remembered", "involved", "transported", "forgot"], "a": 2}, {"q": "Fill in a blank: \"People in good moods will often seek the least engaging stimulation in order to perpetuate their current state, while people in negative moods may .....\" (Knobloch-Westerwick, 2006; Knobloch-Westerwick & Alter, 2 Potts & Sanchez, 1994).", "o": ["seek highly arousing fare in order to achieve and maintain a high arousal level", "turn on some mindless sitcom rerun", "seek the engaging stimulation", "seek stimulation to alter that bad mood"], "a": 3}, {"q": "Why may multitasking with respect to media be particularly appealing? (Wang & Tchernev, 2010)", "o": ["Our desire to meet multiple needs and achieve multiple gratifications", "Sometimes we may not be looking at the screen very much", "our attention becomes overloaded", "Familiar content may partially compensate for structural confusion or lack of experience with film conventions"], "a": 0}, {"q": "What is an experience of uncertainty whose properties can vary from noxious to pleasant usually called?", "o": ["Empathy", "Humor", "Suspense", "Attention"], "a": 2}, {"q": "Which dimensions does transportation include? (Busselle & Bilandzic, 2009).", "o": ["Narrative understanding, attentional focus", "Emotional engagement, and narrative presence", "Attention, Suspending Disbelief, Identification", "Narrative understanding, attentional focus, emotional engagement, and narrative presence"], "a": 3}, {"q": "Fill in blank: \"All types of ads try to affect the reality perceived by the consumer (i.e., give us a new image of a product, candidate, or company or make us feel we have a need or desire for some product). Such processes involve attempts to ....\"", "o": ["change our attention", "change our behavior", "change our attitudes", "change our knowledge"], "a": 2}];
+var $=function(i){return document.getElementById(i)};
+var KEY="mmp_batoan_v1",st={best:0,wrong:[]};
+try{var s=JSON.parse(localStorage.getItem(KEY));if(s&&s.wrong)st=s}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}}
+var AC=null,mute=false,MS=null,RV=null;
+function ac(){if(!AC){try{AC=new (window.AudioContext||window.webkitAudioContext)();
+var cp=AC.createDynamicsCompressor();cp.threshold.value=-14;cp.knee.value=10;cp.ratio.value=8;cp.attack.value=.003;cp.release.value=.25;
+MS=AC.createGain();MS.gain.value=.9;MS.connect(cp);cp.connect(AC.destination);
+RV=AC.createConvolver();var rn=Math.floor(AC.sampleRate*2.4),rb=AC.createBuffer(2,rn,AC.sampleRate);
+for(var c=0;c<2;c++){var rd=rb.getChannelData(c);for(var i=0;i<rn;i++)rd[i]=(Math.random()*2-1)*Math.pow(1-i/rn,2.6)}
+RV.buffer=rb;var rg=AC.createGain();rg.gain.value=.55;RV.connect(rg);rg.connect(MS)}catch(e){AC=null;return}}
+if(AC.state==="suspended")AC.resume()}
+["pointerdown","touchend","click","keydown"].forEach(function(t){addEventListener(t,ac)});
+function ok(){return !mute&&AC&&MS&&AC.state!=="closed"}
+function tone(f,t,d,ty,v,sl,w){if(!ok())return;var o=AC.createOscillator(),g=AC.createGain(),s=AC.currentTime+t;o.type=ty||"sine";o.frequency.setValueAtTime(f,s);if(sl)o.frequency.exponentialRampToValueAtTime(sl,s+d);g.gain.setValueAtTime(v||.15,s);g.gain.exponentialRampToValueAtTime(.001,s+d);o.connect(g);g.connect(MS);if(w)g.connect(RV);o.start(s);o.stop(s+d+.02)}
+function noise(t,d,v,fq,w){if(!ok())return;var n=Math.floor(AC.sampleRate*d),b=AC.createBuffer(1,n,AC.sampleRate),x=b.getChannelData(0);for(var i=0;i<n;i++)x[i]=(Math.random()*2-1)*(1-i/n);var s=AC.createBufferSource(),fl=AC.createBiquadFilter(),g=AC.createGain();s.buffer=b;fl.type="lowpass";fl.frequency.value=fq||1200;g.gain.value=v||.4;s.connect(fl);fl.connect(g);g.connect(MS);if(w)g.connect(RV);s.start(AC.currentTime+t)}
+function swell(f,t,d,ty,v,fc,a,w,f2){if(!ok())return;var s=AC.currentTime+t,o=AC.createOscillator(),g=AC.createGain(),fl=AC.createBiquadFilter();o.type=ty||"sawtooth";o.frequency.setValueAtTime(f,s);if(f2)o.frequency.exponentialRampToValueAtTime(f2,s+d);fl.type="lowpass";fl.frequency.setValueAtTime(fc||600,s);fl.frequency.exponentialRampToValueAtTime((fc||600)*4,s+d*(a||.95));g.gain.setValueAtTime(.0001,s);g.gain.exponentialRampToValueAtTime(v||.1,s+d*(a||.95));g.gain.exponentialRampToValueAtTime(.0001,s+d+.15);o.connect(fl);fl.connect(g);g.connect(MS);if(w)g.connect(RV);o.start(s);o.stop(s+d+.2)}
+function whoosh(t,d,v,f1,f2){if(!ok())return;var s=AC.currentTime+t,n=Math.floor(AC.sampleRate*d),b=AC.createBuffer(1,n,AC.sampleRate),x=b.getChannelData(0);for(var i=0;i<n;i++)x[i]=Math.random()*2-1;var src=AC.createBufferSource(),fl=AC.createBiquadFilter(),g=AC.createGain();src.buffer=b;fl.type="bandpass";fl.Q.value=1.3;fl.frequency.setValueAtTime(f1,s);fl.frequency.exponentialRampToValueAtTime(f2,s+d);g.gain.setValueAtTime(.0001,s);g.gain.exponentialRampToValueAtTime(v,s+d*.6);g.gain.exponentialRampToValueAtTime(.0001,s+d);src.connect(fl);fl.connect(g);g.connect(MS);g.connect(RV);src.start(s)}
+function stab(ns,t,d,v,fc){ns.forEach(function(f){swell(f,t-.06,d,"sawtooth",v,fc||1100,.1,1);swell(f*1.005,t-.06,d,"square",v*.5,fc||1100,.1,1)})}
+var SFX={
+intro:function(){
+/* 0-1.7s: dồn nhịp */
+swell(55,0,1.7,"sawtooth",.2,150,.95,1);swell(82.4,0,1.7,"sawtooth",.1,250,.95,1);swell(110,0,1.7,"sawtooth",.1,300,.95,1);
+swell(220,0,1.7,"sawtooth",.08,400,.95,1,880);
+for(var i=0;i<14;i++){var tt=1.6*Math.pow(i/14,.75),vv=.18+i*.04;tone(95,tt,.28,"sine",vv,48,1);noise(tt,.07,vv*.9,350)}
+whoosh(.35,1.2,.5,200,3200);whoosh(1,.7,.35,4500,300);
+/* 1.75s: PHIÊN TÒA */
+tone(62,1.75,1.3,"sine",.9,26,1);noise(1.75,.4,1,900);noise(1.75,.06,.8,6000);noise(1.75,1.3,.22,9000,1);
+stab([130.8,196,261.6,311.1],1.75,.9,.09,1200);tone(1568,1.78,.6,"triangle",.1,0,1);
+/* 2.25s: BẤT ỔN, đập mạnh nhất */
+tone(46,2.25,2,"sine",1,22,1);noise(2.25,.55,1,1400);noise(2.25,.08,.9,7000);noise(2.25,2.2,.3,10000,1);
+stab([65.4,130.8,196,261.6,329.6,392,523.3],2.25,1.6,.1,1500);tone(2093,2.28,.8,"triangle",.1,0,1);
+/* 2.9s: fanfare */
+[523.3,659.3,784,1046.5,1318.5].forEach(function(f,k){swell(f,2.9+k*.1,.5,"sawtooth",.06,2500,.08,1);tone(f*2,2.9+k*.1,.5,"triangle",.07,0,1)});
+for(var j=0;j<9;j++)noise(3.1+j*.07,.1,.12,5000,1)},
+pop:function(){tone(520,0,.09,"sine",.1,840)},
+good:function(){tone(660,0,.12,"triangle",.14);tone(880,.1,.12,"triangle",.14);tone(1320,.2,.22,"triangle",.14)},
+bad:function(){tone(220,0,.25,"sawtooth",.1,110);tone(150,.15,.3,"square",.07,80)},
+win:function(){[523,659,784,1047,1319].forEach(function(f,i){tone(f,i*.11,.3,"triangle",.14)})},
+tick:function(){tone(900,0,.05,"square",.05)}};
+$("snd").onclick=function(){mute=!mute;this.textContent=mute?"🔇":"🔊";this.setAttribute("aria-pressed",String(!mute));ac()};
+
+var cnt=0,mode="",list=[],i=0,right=0,done=[],picked=false,busy=false,tmr=null,endAt=0,full=0,total=0,streak=0,lastLeft=0;
+var CNTS=[10,20,30,0],SKEY="mmp_session_v1";
+function saveSess(){try{if(!mode||!total||$("play").hidden)return;var rem=mode==="exam"?Math.max(0,Math.round((endAt-Date.now())/1000)):0;
+localStorage.setItem(SKEY,JSON.stringify({mode:mode,list:list,right:right,done:done,rem:rem,streak:streak}))}catch(e){}}
+function loadSess(){try{var s=JSON.parse(localStorage.getItem(SKEY));if(s&&s.list&&s.list.length&&s.done&&s.done.length<s.list.length&&s.list.every(function(x){return Q[x]}))return s}catch(e){}return null}
+function clearSess(){try{localStorage.removeItem(SKEY)}catch(e){}}
+var NAMES={seq:"📖 Tuần tự",rnd:"🎲 Ngẫu nhiên",exam:"⏱️ Thi thử",review:"🔁 Ôn câu sai",flash:"🃏 Lật thẻ"};
+function drawCnts(){var h="";CNTS.forEach(function(c){h+='<button class="chipb'+(c===cnt?' on':'')+'" data-c="'+c+'" type="button">'+(c?c+' câu':'Tất cả ('+Q.length+')')+'</button>'});$("cnts").innerHTML=h;
+[].forEach.call($("cnts").children,function(b){b.onclick=function(){cnt=+b.dataset.c;SFX.pop();drawCnts()}})}
+function menu(){clearInterval(tmr);$("back").hidden=true;$("menu").hidden=false;$("play").hidden=true;$("endbox").hidden=true;
+$("sTot").textContent=Q.length;$("sBest").textContent=st.best?st.best+"%":"–";
+st.wrong=st.wrong.filter(function(x){return x<Q.length});$("sWrong").textContent=st.wrong.length;
+$("bReview").disabled=!st.wrong.length;drawCnts();
+var S=loadSess(),r=$("resume");
+if(S){r.hidden=false;r.innerHTML='<span class="ic">▶️</span><div><b>Bạn đang làm dở</b>'+NAMES[S.mode]+' · đã xong '+S.done.length+'/'+S.list.length+' câu'+(S.mode==="exam"?' · còn '+mm(S.rem):'')+'<div class="rb"><button class="go" id="rs" type="button">Tiếp tục</button><button class="ghost" id="rd" type="button">Bỏ bài này</button></div></div>';
+$("rs").onclick=function(){SFX.pop();start(S.mode,S)};$("rd").onclick=function(){SFX.pop();clearSess();menu()}}
+else{r.hidden=true;r.innerHTML=""}
+window.scrollTo(0,0)}
+function shuffle(a){a=a.slice();for(var k=a.length-1;k>0;k--){var j=Math.floor(Math.random()*(k+1));var t=a[k];a[k]=a[j];a[j]=t}return a}
+function mm(s){s=Math.max(0,s|0);return Math.floor(s/60)+":"+("0"+s%60).slice(-2)}
+function start(m,S){mode=m;clearInterval(tmr);var ids;
+if(S){list=S.list.slice();done=S.done.slice();right=S.right;streak=S.streak||0;i=done.length}
+else{ids=Q.map(function(_,k){return k});if(m==="review")ids=st.wrong.slice();
+if(m==="rnd"||m==="exam"||m==="flash"||m==="review")ids=shuffle(ids);
+if(cnt&&cnt<ids.length)ids=ids.slice(0,cnt);list=ids;i=0;right=0;done=[];streak=0}
+total=list.length;if(!total)return;
+$("menu").hidden=true;$("endbox").hidden=true;$("play").hidden=false;$("back").hidden=false;
+var tm=$("timer");
+if(m==="exam"){full=Math.max(60,total*45);var rem=S?S.rem:full;endAt=Date.now()+rem*1000;lastLeft=rem;tm.hidden=false;tm.classList.remove("low");tick();tmr=setInterval(tick,250)}else tm.hidden=true;
+saveSess();show();window.scrollTo(0,0)}
+function tick(){var left=Math.max(0,Math.ceil((endAt-Date.now())/1000)),tm=$("timer");tm.firstChild.style.width=(left/full*100)+"%";
+if(left<=10){tm.classList.add("low");if(left!==lastLeft&&left>0)SFX.tick()}else tm.classList.remove("low");
+lastLeft=left;drawChip();if(left<=0){clearInterval(tmr);finish(true)}}
+function drawChip(){var s=NAMES[mode];
+if(mode==="exam")s+=" · còn "+mm(lastLeft)+" · đã làm "+done.length+"/"+total;
+else{s+=" · đúng "+right+"/"+done.length;if(streak>=2)s+=" · 🔥 chuỗi "+streak}
+$("chip").textContent=s}
+function hud(){var a=done.length?Math.round(right/done.length*100):0;
+$("pl").textContent="📍 Câu "+Math.min(i+1,total)+"/"+total;$("pg").firstChild.style.width=(i/total*100)+"%";
+$("al").textContent="🎯 Chính xác "+(mode==="exam"?"(ẩn)":a+"%");$("ac").firstChild.style.width=(mode==="exam"?0:a)+"%";drawChip()}
+function esc(s){return String(s).replace(/[&<>]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;"}[c]})}
+function show(){picked=false;busy=false;var q=Q[list[i]];hud();
+var c=$("qcard");c.style.animation="none";c.classList.remove("shake");void c.offsetWidth;c.style.animation="";
+c.innerHTML='<span class="qn">CÂU '+(i+1)+'</span><p class="qt">'+esc(q.q)+'</p>'+(q.note?'<small style="display:block;margin-top:8px;color:#5E5648">'+esc(q.note)+'</small>':'');
+$("ansbox").innerHTML="";
+if(mode==="flash"){$("opts").innerHTML="";$("acts").innerHTML='<button class="ghost" id="rv" type="button">💡 Xem đáp án</button>';$("rv").onclick=flashReveal;return}
+var h="";q.o.forEach(function(o,k){h+='<button class="opt" data-k="'+k+'" type="button" style="animation-delay:'+(k*.07)+'s"><span class="k">'+"ABCD"[k]+'</span><span>'+esc(o)+'</span></button>'});
+$("opts").innerHTML=h;
+[].forEach.call($("opts").children,function(b){b.onclick=function(){pick(+b.dataset.k)}});
+$("acts").innerHTML='<button class="ghost" id="rv" type="button">💡 Xem đáp án</button>';
+$("rv").onclick=reveal;if(mode==="exam")$("rv").hidden=true}
+function fx(ok){var f=document.createElement("div");f.className="flash "+(ok?"good":"bad");document.body.appendChild(f);setTimeout(function(){f.remove()},700);
+var s=document.createElement("div");s.className="slam "+(ok?"good":"bad");s.textContent=ok?(streak>=3?"CHUỖI "+streak+" 🔥":"CHUẨN! ✔"):"SAI RỒI ✘";document.body.appendChild(s);setTimeout(function(){s.remove()},1200);
+if(!ok){var qc=$("qcard");qc.style.animation="none";void qc.offsetWidth;qc.style.animation="";qc.classList.remove("shake");void qc.offsetWidth;qc.classList.add("shake")}
+else rain(streak>=5?["🔥","⭐","🎉","✨"]:["⭐","✨","🎉"],streak>=5?18:8)}
+function rain(a,n){if(document.querySelectorAll(".rain").length>40)return;for(var k=0;k<n;k++){var e=document.createElement("div");e.className="rain";e.textContent=a[k%a.length];e.style.left=Math.random()*95+"vw";e.style.animationDelay=Math.random()*.5+"s";document.body.appendChild(e);setTimeout(function(x){x.remove()}.bind(null,e),2800)}}
+function delta(ok){var m=$("ma"),d=document.createElement("div");d.className="dl "+(ok?"up":"dn");d.textContent=ok?"+1":"✘";m.appendChild(d);setTimeout(function(){d.remove()},1300)}
+function mark(k){var q=Q[list[i]];[].forEach.call($("opts").children,function(b,j){b.disabled=true;b.classList.remove("sel");if(j===q.a)b.classList.add("right");else if(j===k)b.classList.add("wrong");else b.classList.add("dim")})}
+function pick(k){if(picked||busy)return;var q=Q[list[i]];if(!q||k>=q.o.length)return;picked=true;SFX.pop();
+var ok=k===q.a;done.push({id:list[i],k:k,ok:ok});if(ok)right++;
+if(mode==="exam"){[].forEach.call($("opts").children,function(b,j){b.disabled=true;if(j===k)b.classList.add("sel");else b.classList.add("dim")});
+saveSess();next(i+1>=total?"Nộp bài 🏁":"Câu tiếp ➜");return}
+streak=ok?streak+1:0;
+var w=st.wrong.indexOf(list[i]);if(ok){if(mode==="review"&&w>-1)st.wrong.splice(w,1)}else if(w<0)st.wrong.push(list[i]);save();saveSess();
+mark(k);fx(ok);delta(ok);ok?SFX.good():SFX.bad();hud();
+$("ansbox").innerHTML='<div class="ans '+(ok?"good":"bad")+'"><span class="tag">'+(ok?"✅ ĐÚNG":"❌ SAI")+' · ĐÁP ÁN</span><b>'+"ABCD"[q.a]+'. '+esc(q.o[q.a])+'</b>'+(ok?'':'<small>Bạn chọn: '+"ABCD"[k]+'. '+esc(q.o[k])+'</small>')+'</div>';
+next(i+1>=total?"Xem kết quả 🏆":"Câu tiếp ➜")}
+function reveal(){if(picked||busy)return;picked=true;SFX.pop();var q=Q[list[i]];streak=0;
+done.push({id:list[i],k:-1,ok:false,peek:true});if(st.wrong.indexOf(list[i])<0)st.wrong.push(list[i]);save();saveSess();
+mark(-1);hud();
+$("ansbox").innerHTML='<div class="ans"><span class="tag">💡 ĐÁP ÁN</span><b>'+"ABCD"[q.a]+'. '+esc(q.o[q.a])+'</b><small>Xem đáp án nên câu này không tính điểm đúng.</small></div>';
+next(i+1>=total?"Xem kết quả 🏆":"Câu tiếp ➜")}
+function flashReveal(){SFX.pop();var q=Q[list[i]];
+$("ansbox").innerHTML='<div class="ans"><span class="tag">💡 ĐÁP ÁN</span><b>'+"ABCD"[q.a]+'. '+esc(q.o[q.a])+'</b></div>';
+$("acts").innerHTML='<button class="ghost" id="kn" type="button">😎 Nhớ rồi</button> <button class="ghost" id="fg" type="button">😵 Chưa nhớ</button>';
+$("kn").onclick=function(){flashRate(true)};$("fg").onclick=function(){flashRate(false)};
+setTimeout(function(){var x=$("ansbox");if(x.scrollIntoView)x.scrollIntoView({block:"nearest",behavior:"smooth"})},150)}
+function flashRate(ok){if(busy)return;busy=true;var id=list[i];done.push({id:id,k:-1,ok:ok});
+if(ok){right++;SFX.good();var w=st.wrong.indexOf(id);if(w>-1&&mode==="review")st.wrong.splice(w,1)}else{SFX.bad();if(st.wrong.indexOf(id)<0)st.wrong.push(id)}
+save();saveSess();i++;if(i>=total)finish();else{show();window.scrollTo({top:0,behavior:"smooth"})}}
+function next(label){var a=$("acts"),rv=$("rv");if(rv)rv.hidden=true;
+var b=document.createElement("button");b.className="go glow";b.type="button";b.textContent=label;
+b.onclick=function(){if(busy)return;busy=true;SFX.pop();i++;saveSess();if(i>=total)finish();else{show();window.scrollTo({top:0,behavior:"smooth"})}};
+a.appendChild(b);setTimeout(function(){if(a.scrollIntoView)a.scrollIntoView({block:"nearest",behavior:"smooth"})},120)}
+function finish(timeout){clearInterval(tmr);clearSess();
+if(mode==="exam"){for(var k=done.length;k<total;k++)done.push({id:list[k],k:-1,ok:false,skip:1});
+done.forEach(function(d){var w=st.wrong.indexOf(d.id);if(!d.ok&&w<0)st.wrong.push(d.id);if(d.ok&&w>-1)st.wrong.splice(w,1)})}
+var pct=total?Math.round(right/total*100):0;if(mode!=="flash"&&pct>st.best)st.best=pct;save();
+$("play").hidden=true;$("back").hidden=true;$("endbox").hidden=false;window.scrollTo(0,0);
+var em=pct>=90?"🏆":pct>=70?"🎉":pct>=50?"💪":"📚",msg=pct>=90?"Quá đỉnh! Sẵn sàng vào phòng thi.":pct>=70?"Khá tốt, ôn thêm vài câu là chắc.":pct>=50?"Tạm ổn, quay lại những câu sai nhé.":"Chưa vững, chạy chế độ Ôn câu sai ngay!";
+var rc="";done.forEach(function(d,n){var q=Q[d.id];rc+='<li class="'+(d.ok?"r":"w")+'"><b>'+(n+1)+'. '+esc(q.q)+'</b><span>Đáp án: '+"ABCD"[q.a]+'. '+esc(q.o[q.a])+'</span>'+((!d.ok&&d.k>-1)?'<span>Bạn chọn: '+"ABCD"[d.k]+'. '+esc(q.o[d.k])+'</span>':'')+(d.skip?'<span>Chưa làm kịp</span>':'')+'</li>'});
+$("endbox").innerHTML='<div class="box end"><div class="big">'+em+'</div><h2>'+(timeout?"Hết giờ!":"Hoàn thành!")+'</h2><div class="ring"><svg viewBox="0 0 120 120" aria-hidden="true"><circle class="bg" cx="60" cy="60" r="52"/><circle class="fg" id="rf" cx="60" cy="60" r="52" stroke-dasharray="326.7" stroke-dashoffset="326.7"/></svg><b id="rn">0%</b></div><div class="score">'+right+' / '+total+' câu đúng</div><p>'+msg+'</p><ul class="recap">'+rc+'</ul><div class="endbtn"><button class="go" id="again" type="button">🔄 Làm lại</button><button class="ghost" id="home" type="button">🏠 Về menu</button></div></div>';
+$("again").onclick=function(){SFX.pop();start(mode)};$("home").onclick=function(){SFX.pop();menu()};
+var rf=$("rf");rf.style.stroke=pct>=70?"#1B9A6C":pct>=50?"#2F6FED":"#E63946";
+requestAnimationFrame(function(){requestAnimationFrame(function(){rf.style.strokeDashoffset=326.7*(1-pct/100)})});
+var t0=null;function cu(ts){if(t0===null)t0=ts;var p=Math.min(1,(ts-t0)/1300),e=1-Math.pow(1-p,3);var n=$("rn");if(n)n.textContent=Math.round(pct*e)+"%";if(p<1)requestAnimationFrame(cu)}requestAnimationFrame(cu);
+pct>=70?(SFX.win(),rain(["🎉","⭐","🏆","✨"],24)):SFX.bad()}
+[].forEach.call(document.querySelectorAll(".mode"),function(b){b.onclick=function(){if(b.disabled)return;SFX.pop();start(b.dataset.m)}});
+$("back").onclick=function(){SFX.pop();saveSess();menu()};
+addEventListener("keydown",function(e){if($("play").hidden||e.repeat||e.ctrlKey||e.metaKey||e.altKey)return;
+var k="abcd".indexOf(e.key.toLowerCase());
+if(k>-1&&e.key.length===1&&mode!=="flash"){pick(k);return}
+if(e.key==="Enter"||e.key==="ArrowRight"){var g=document.querySelector("#acts .go");if(g){e.preventDefault();g.click()}}});
+addEventListener("visibilitychange",function(){if(document.hidden)saveSess();else if(mode==="exam"&&!$("play").hidden)tick()});
+addEventListener("pagehide",saveSess);
+menu();
+function openEnd(){var b=document.body;if(b.classList.contains("started"))return;b.classList.add("started");var o=$("open");if(o){o.style.pointerEvents="none";o.style.animation="ofade .45s ease-in forwards";setTimeout(function(){o.remove()},500)}}
+var played=false;
+function playOpen(){played=true;$("open").classList.add("play");SFX.intro();setTimeout(openEnd,4700)}
+$("open").addEventListener("pointerdown",function(){ac();if(!played)playOpen();else openEnd()});
+try{ac();if(AC&&AC.state==="running")playOpen()}catch(e){}
+</script>
+</body>
+</html>
